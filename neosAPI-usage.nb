@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     83203,       1904]
-NotebookOptionsPosition[     80996,       1826]
-NotebookOutlinePosition[     81417,       1844]
-CellTagsIndexPosition[     81374,       1841]
+NotebookDataLength[     63988,       1652]
+NotebookOptionsPosition[     59715,       1517]
+NotebookOutlinePosition[     60304,       1538]
+CellTagsIndexPosition[     60261,       1535]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -22,1322 +22,927 @@ Notebook[{
 Cell[CellGroupData[{
 Cell["\<\
 Solving complex optimization problems through remote access to the NEOS server\
-\>", "Chapter"],
+\>", "Title"],
 
 Cell["\<\
 Dario Malchiodi
 Universit\[AGrave] degli Studi di Milano
-Dipartimento di Scienze dell'Informazione
+Dipartimento di Informatica
 Via Comelico 39/41 2135 Milano ITALY
-malchiodi@dsi.unimi.it\
-\>", "TitlePageLogo"],
+malchiodi@di.unimi.it\
+\>", "Author",
+ CellChangeTimes->{{3.5588070250565042`*^9, 3.5588070357628717`*^9}}],
+
+Cell[CellGroupData[{
 
 Cell["The NEOS server", "Section"],
+
+Cell[TextData[{
+ "The neosAPI package allows the access to the NEOS server for remote \
+optimization directly within ",
+ StyleBox["Wolfram Mathematica",
+  FontSlant->"Italic"],
+ ". The software web page is available at the address ",
+ StyleBox["http://malchiodi.di.unimi.it/software/neosAPI",
+  FontFamily->"Courier",
+  FontSize->11],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.5588528190663958`*^9, 3.558853038232684*^9, {3.558853102200569*^9, 
+   3.5588531213046703`*^9}}]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["Obtaining and installing the package", "Section"],
 
 Cell[TextData[{
- "The software is available at the address \
-http://homes.dsi.unimi.it/~malchiod/software/neosAPI in form of a package \
-file for ",
+ "The software is available on github at the address ",
+ StyleBox["http://github.com/dariomalchiodi/neosAPI",
+  FontFamily->"Courier",
+  FontSize->11],
+ ", in a repository containing this documentation notebook and the  package \
+file ",
+ StyleBox["neosAPI.m",
+  FontFamily->"Courier",
+  FontSize->11],
+ ". The latter should be saved in a directory listed in the ",
+ StyleBox["$Path",
+  FontFamily->"Courier",
+  FontSize->11],
+ " variable (a suggested choice is the ",
+ StyleBox["Applications",
+  FontSlant->"Italic"],
+ " directory in the ",
  StyleBox["Mathematica",
   FontSlant->"Italic"],
- ". The installation consists in downloading base64.m file and saving it in a \
-directory within the $Path variable (a suggested choice is the Applications \
-directory in the ",
- StyleBox["Mathematica",
-  FontSlant->"Italic"],
- " system- or user-based root directory). The xmlRpc package, available at \
-the address http://homes.dsi.unimi.it/~malchiod/software/xmlRpc, needs to be \
-previously installed."
-}], "Text"],
-
-Cell[BoxData[
- FormBox[GridBox[{
-    {Cell[TextData[{
-      StyleBox["neosHelp[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox[
-     "returns the API help",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosEmailHelp[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox[
-     "returns the contents of the e-mail help sent by the server",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosWelcome[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox[
-     "returns the API welcome message",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosVersion[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], 
-     RowBox[{"returns", " ", 
-      StyleBox["a",
-       FontSlant->"Plain"], " ", "string", " ", "describing", " ", "the", " ",
-       "server", " ", "version"}]},
-    {Cell[TextData[{
-      StyleBox["neosPing[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox[
-     "returns a string acknowledging the server availability",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]}
-   },
-   GridBoxAlignment->{
-    "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-     "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}], 
-  TraditionalForm]], "DefinitionBox",
- GridBoxOptions->{
- GridBoxDividers->{
-  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-   "RowsIndexed" -> {}},
- GridBoxSpacings->{"Columns" -> {
-     Offset[0.27999999999999997`], {
-      Offset[0.5599999999999999]}, 
-     Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-     Offset[0.2], {
-      Offset[0.16]}, 
-     Offset[0.2]}, "RowsIndexed" -> {}}}],
-
-Cell[BoxData[
- FormBox[GridBox[{
-    {Cell[TextData[{
-      StyleBox["neosPrintQueue[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox[
-     "returns a string containing the current queue status",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosSubmitJob[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosGetJobStatus[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosGetFinalResults[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosSolveJob[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosGetJobInfo[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosKillJob[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosGetIntermediateResults[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]}
-   },
-   GridBoxAlignment->{
-    "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-     "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}], 
-  TraditionalForm]], "DefinitionBox",
- GridBoxOptions->{
- GridBoxDividers->{
-  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-   "RowsIndexed" -> {}},
- GridBoxSpacings->{"Columns" -> {
-     Offset[0.27999999999999997`], {
-      Offset[0.5599999999999999]}, 
-     Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-     Offset[0.2], {
-      Offset[0.16]}, 
-     Offset[0.2]}, "RowsIndexed" -> {}}}],
-
-Cell[BoxData[
- FormBox[GridBox[{
-    {Cell[TextData[{
-      StyleBox["neosListCategories[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["1",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosListAllSolvers[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosListSolversInCategory[", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox["category", "TI",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox["]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosGetSolverTemplate[", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox["category", "TI",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[",", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox["solvername", "TI",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[",", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox["inputmethod", "TI",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox["]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]}
-   },
-   GridBoxAlignment->{
-    "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-     "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}], 
-  TraditionalForm]], "DefinitionBox",
- GridBoxOptions->{
- GridBoxDividers->{
-  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-   "RowsIndexed" -> {}},
- GridBoxSpacings->{"Columns" -> {
-     Offset[0.27999999999999997`], {
-      Offset[0.5599999999999999]}, 
-     Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-     Offset[0.2], {
-      Offset[0.16]}, 
-     Offset[0.2]}, "RowsIndexed" -> {}}}],
-
-Cell[BoxData[
- FormBox[GridBox[{
-    {Cell[TextData[{
-      StyleBox["neosGetIntermediateResultsNonBlocking[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["1",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]},
-    {Cell[TextData[{
-      StyleBox["neosGetFinalResultsNonBlocking[]", "MR",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}],
-      StyleBox[" ",
-       GridBoxOptions->{
-       GridBoxDividers->{
-        "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-         "RowsIndexed" -> {}},
-       GridBoxSpacings->{"Columns" -> {
-           Offset[0.27999999999999997`], {
-            Offset[0.5599999999999999]}, 
-           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-           Offset[0.2], {
-            Offset[0.16]}, 
-           Offset[0.2]}, "RowsIndexed" -> {}}}]
-     }],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}], Cell[TextData[StyleBox["2",
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]],
-      GridBoxOptions->{
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], {
-           Offset[0.16]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}}]}
-   },
-   GridBoxAlignment->{
-    "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-     "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}], 
-  TraditionalForm]], "DefinitionBox",
- GridBoxOptions->{
- GridBoxDividers->{
-  "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-   "RowsIndexed" -> {}},
- GridBoxSpacings->{"Columns" -> {
-     Offset[0.27999999999999997`], {
-      Offset[0.5599999999999999]}, 
-     Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-     Offset[0.2], {
-      Offset[0.16]}, 
-     Offset[0.2]}, "RowsIndexed" -> {}}}]
+ " system- or user-based root directory). The xmlRPC package, described at \
+the address ",
+ StyleBox["http://malchiodi.di.unimi.it/software//xmlRPC",
+  FontFamily->"Courier",
+  FontSize->11],
+ ", needs to be previously installed."
+}], "Text",
+ CellChangeTimes->{{3.558810394084673*^9, 3.5588104211320972`*^9}, {
+  3.5588526843908453`*^9, 3.5588527115540247`*^9}, {3.558852781289112*^9, 
+  3.5588530244975157`*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Using the package", "Section"],
+Cell["Using the package", "Section",
+ CellChangeTimes->{{3.5588537665081387`*^9, 3.558853768241852*^9}}],
+
+Cell["\<\
+The neosAPI package provides the following functions.\
+\>", "Text",
+ CellChangeTimes->{{3.558853792943749*^9, 3.558853803855032*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosHelp", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell["\<\
+Returns a string containing a generic help message.\
+\>", "Text",
+ CellChangeTimes->{{3.558809393304268*^9, 3.5588093988316517`*^9}, {
+  3.558853816615035*^9, 3.558853825622682*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosEmailHelp", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell["\<\
+Returns a string containing a generic help message for email users.\
+\>", "Text",
+ CellChangeTimes->{{3.5588093118052*^9, 3.558809312538237*^9}, {
+  3.5588094083682137`*^9, 3.558809410320282*^9}, {3.5588104502061577`*^9, 
+  3.558810450614201*^9}, {3.5588538679734*^9, 3.558853871573265*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosWelcome", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell["\<\
+Returns a string containing a welcome message.\
+\>", "Text",
+ CellChangeTimes->{
+  3.558809445573751*^9, {3.558810453909749*^9, 3.5588104558376017`*^9}, {
+   3.558853875693183*^9, 3.558853878236957*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosVersion", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell["\<\
+Returns a string containing the  version number of the NEOS server.\
+\>", "Text",
+ CellChangeTimes->{3.55880965937633*^9, 3.558853813671603*^9, 
+  3.558853886351262*^9}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosPing", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Returns the string ",
+ StyleBox["\"NeosServer is alive\"",
+  FontFamily->"Courier",
+  FontSize->11],
+ " when the NEOS server is running."
+}], "Text",
+ CellChangeTimes->{
+  3.5588096654650097`*^9, {3.558853888047365*^9, 3.55885389265578*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosPrintQueue", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell["\<\
+Returns a string containing a description of the current NEOS jobs.\
+\>", "Text",
+ CellChangeTimes->{
+  3.5588096717937527`*^9, {3.558853910918621*^9, 3.558853917863204*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosSubmitJob", "[", 
+   StyleBox["request",
+    FontFamily->"Times",
+    FontSlant->"Italic",
+    FontColor->RGBColor[0, 0, 1]], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Submits a job tho the NEOS server, encoded in ",
+ StyleBox["request",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " using the standard XML-RPC format for a given catetory, returning a list \
+",
+ StyleBox["{jobNumber, password}",
+  FontFamily->"Courier",
+  FontSize->11],
+ " or a string containing the description of an occurred error."
+}], "Text",
+ CellChangeTimes->{{3.558809639478527*^9, 3.558809641618787*^9}, 
+   3.558809678535041*^9, {3.55885392605445*^9, 3.558853938270753*^9}, {
+   3.558859285735567*^9, 3.558859315185913*^9}}],
+
+Cell[BoxData[
+ StyleBox[GridBox[{
+    {
+     StyleBox[
+      RowBox[{"neosGetJobStatus", "[", 
+       RowBox[{
+        StyleBox[
+         StyleBox["jobNumber", "MR",
+          FontFamily->"Times",
+          FontSlant->"Italic",
+          FontColor->RGBColor[0, 0, 1]], "MR",
+         GridBoxOptions->{
+         GridBoxDividers->{
+          "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}},
+            "RowsIndexed" -> {}},
+         GridBoxSpacings->{"Columns" -> {
+             Offset[0.27999999999999997`], {
+              Offset[0.5599999999999999]}, 
+             Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+             Offset[0.2], {
+              Offset[0.16]}, 
+             Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+        StyleBox[
+         StyleBox["password", "MR",
+          FontFamily->"Times",
+          FontSlant->"Italic",
+          FontColor->RGBColor[0, 0, 1]], "MR",
+         GridBoxOptions->{
+         GridBoxDividers->{
+          "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}},
+            "RowsIndexed" -> {}},
+         GridBoxSpacings->{"Columns" -> {
+             Offset[0.27999999999999997`], {
+              Offset[0.5599999999999999]}, 
+             Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+             Offset[0.2], {
+              Offset[0.16]}, 
+             Offset[0.2]}, "RowsIndexed" -> {}}}]}], "]"}], "MR",
+      GridBoxOptions->{
+      GridBoxDividers->{
+       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.5599999999999999]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.16]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}}]}
+   }], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Returns either ",
+ StyleBox["\"Done\"",
+  FontFamily->"Courier",
+  FontSize->11],
+ ", ",
+ StyleBox["\"Running\"",
+  FontFamily->"Courier",
+  FontSize->11],
+ ", ",
+ StyleBox["\"Waiting\"",
+  FontFamily->"Courier",
+  FontSize->11],
+ ", ",
+ StyleBox["\"Unknown Job\"",
+  FontFamily->"Courier",
+  FontSize->11],
+ ", or ",
+ StyleBox["\"Bad Password\"",
+  FontFamily->"Courier",
+  FontSize->11],
+ " according to the status of the job identified by ",
+ StyleBox["jobNumber",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["password",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.558810156559369*^9, {3.558854130530672*^9, 3.558854166000452*^9}, {
+   3.55885939796495*^9, 3.5588594138703537`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosGetFinalResults", "[", 
+   RowBox[{
+    StyleBox[
+     StyleBox["jobNumber", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox["password", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}]}], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Returns a string containing the output of the job specified by ",
+ StyleBox["jobNumber",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["password",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ ". If the job is still running, the function will hang until the former \
+completes."
+}], "Text",
+ CellChangeTimes->{
+  3.558810222579232*^9, {3.558854216687117*^9, 3.558854242031105*^9}, {
+   3.5588594921441097`*^9, 3.5588595028131943`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosSolveJob", "[", 
+   StyleBox["request",
+    FontFamily->"Times",
+    FontSlant->"Italic",
+    FontColor->RGBColor[0, 0, 1]], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Submits a job tho the NEOS server, encoded in ",
+ StyleBox["request",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " using the standard XML-RPC format a given category, returning the \
+corresponding output. The function will hang until the job completes."
+}], "Text",
+ CellChangeTimes->{
+  3.558810235119223*^9, {3.558859250088056*^9, 3.5588592527878103`*^9}, {
+   3.5588597298157988`*^9, 3.558859779184161*^9}, {3.5588601476344423`*^9, 
+   3.558860148811326*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosGetJobInfo", "[", 
+   RowBox[{
+    StyleBox[
+     StyleBox["jobNumber", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox["password", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}]}], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Returns a string describing a 4-ple ",
+ StyleBox["(category, solverName, input, status)",
+  FontSlant->"Italic"],
+ " describing the  status of the job identified by ",
+ StyleBox["jobNumber",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["password",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.558810246637936*^9, {3.5588598343449297`*^9, 3.5588598721568193`*^9}, {
+   3.5588599409822693`*^9, 3.5588599417486763`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosKillJob", "[", 
+   RowBox[{
+    StyleBox[
+     StyleBox["jobNumber", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox["password", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}]}], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Kills the job identified by ",
+ StyleBox["jobNumber",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["password",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.558810262086842*^9, {3.558859962771646*^9, 3.5588599740781384`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosGetIntermediateResults", "[", 
+   RowBox[{
+    StyleBox[
+     StyleBox["jobNumber", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox[
+      StyleBox["password", "MR",
+       FontFamily->"Times",
+       FontSlant->"Italic"], "MR",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox["offset", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}]}], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Retrieves intermediate results of the job identified by ",
+ StyleBox["jobNumber",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["password",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ ", starting at character ",
+ StyleBox["offset",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " up to the last received data. The function hangs until another packet of \
+output is sent or the job is finished."
+}], "Text",
+ CellChangeTimes->{{3.558809865788492*^9, 3.558809866946391*^9}, 
+   3.558810273307393*^9, {3.558860039968122*^9, 3.5588600652452908`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosListCategories", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell["\<\
+Returns a dictionary containing all categories available on NEOS.\
+\>", "Text",
+ CellChangeTimes->{
+  3.558810290295042*^9, {3.558860105183249*^9, 3.558860107611821*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosListAllSolvers", "[", "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Returns a string listing all solvers available on NEOS, each shown in the \
+format ",
+ StyleBox["category:solver:inputMethod",
+  FontSlant->"Italic"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.558810301938854*^9, {3.55886011279663*^9, 3.5588601233715763`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+   StyleBox["neosListSolversInCategory", "MR"], 
+   StyleBox["[", "MR"], 
+   StyleBox["category", "TI",
+    FontColor->RGBColor[0, 0, 1]], 
+   StyleBox["]", "MR"]}],
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Returns a string listing all solvers for category ",
+ StyleBox["category",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ ", each shown in the format ",
+ StyleBox["solver:inputMethod",
+  FontSlant->"Italic"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.558810313499695*^9, {3.558860197138298*^9, 3.558860222625216*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+   StyleBox["neosGetSolverTemplate", "MR"], 
+   StyleBox["[", "MR"], 
+   RowBox[{
+    StyleBox["category", "TI",
+     FontColor->RGBColor[0, 0, 1]], 
+    StyleBox[",", "MR"], 
+    StyleBox["solverName", "TI",
+     FontColor->RGBColor[0, 0, 1]], 
+    StyleBox[",", "MR"], 
+    StyleBox["inputMethod", "TI",
+     FontColor->RGBColor[0, 0, 1]]}], 
+   StyleBox["]", "MR"]}],
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Returns a template for the solver identified by ",
+ StyleBox["category",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ ", ",
+ StyleBox["solverName",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["inputMethod",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.558810324799753*^9, {3.558860321734748*^9, 3.5588603379078703`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosGetIntermediateResultsNonBlocking", "[", 
+   RowBox[{
+    StyleBox[
+     StyleBox["jobNumber", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic"], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox["password", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic"], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox["offset", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic"], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}]}], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Retrieves intermediate results of the job identified by ",
+ StyleBox["jobNumber",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["password",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ ", starting at character ",
+ StyleBox["offset",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " up to the last received data. The function returns an empty string if the \
+job is still running."
+}], "Text",
+ CellChangeTimes->{
+  3.558810338541411*^9, {3.5588604372698727`*^9, 3.5588604826890078`*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"neosGetFinalResultsNonBlocking", "[", 
+   RowBox[{
+    StyleBox[
+     StyleBox["jobNumber", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}], ",", " ", 
+    StyleBox[
+     StyleBox["password", "MR",
+      FontFamily->"Times",
+      FontSlant->"Italic",
+      FontColor->RGBColor[0, 0, 1]], "MR",
+     GridBoxOptions->{
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.16]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}}]}], "]"}], "MR",
+  GridBoxOptions->{
+  GridBoxDividers->{
+   "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+    "RowsIndexed" -> {}},
+  GridBoxSpacings->{"Columns" -> {
+      Offset[0.27999999999999997`], {
+       Offset[0.5599999999999999]}, 
+      Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+      Offset[0.2], {
+       Offset[0.16]}, 
+      Offset[0.2]}, "RowsIndexed" -> {}}}]], "Code"],
+
+Cell[TextData[{
+ "Retrieves the results of the job identified by ",
+ StyleBox["jobNumber",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ " and ",
+ StyleBox["password",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ ", returning an empty string if the latter is still running. In this way the \
+function always returns without hanging."
+}], "Text",
+ CellChangeTimes->{
+  3.5588103531433983`*^9, {3.5588606367889013`*^9, 3.558860671128922*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Using the package", "Section",
+ CellChangeTimes->{3.55880920114394*^9}],
 
 Cell[TextData[{
  "The package loads as usual in ",
@@ -1347,14 +952,23 @@ Cell[TextData[{
 }], "Text"],
 
 Cell[BoxData[
- RowBox[{"<<", "neosAPI`"}]], "Input",
- CellLabel->"In[12]:="],
+ RowBox[{"<<", "neosAPI`"}]], "Input"],
+
+Cell[TextData[{
+ "The functions ",
+ StyleBox["neosHelp", "Input"],
+ ", ",
+ StyleBox["neosEmailHelp", "Input"],
+ " and ",
+ StyleBox["neosWelcome", "Input"],
+ " return generic help messages:"
+}], "Text",
+ CellChangeTimes->{{3.558860991438191*^9, 3.558861045002541*^9}}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"neosHelp", "[", "]"}]], "Input",
- CellLabel->"In[2]:="],
+ RowBox[{"neosHelp", "[", "]"}]], "Input"],
 
 Cell[BoxData["\<\"class NeosServer\\n |  Methods defined here:\\n |  \\n |  \
 __init__(self)\\n |  \\n |  disableSolver(self, category, solvername, input, \
@@ -1483,8 +1097,7 @@ welcome message.\\n\"\>"], "Output"]
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"neosEmailHelp", "[", "]"}]], "Input",
- CellLabel->"In[4]:="],
+ RowBox[{"neosEmailHelp", "[", "]"}]], "Input"],
 
 Cell[BoxData["\<\"    \
 ________________________________________________________\\n    \\n            \
@@ -1562,15 +1175,14 @@ scip:ZIMPL\\n\\tgo:scip:OSIL\\n\\n\\n\\nMore information on NEOS can be found \
 at http://www.neos-server.org/neos\\n\"\>"], "Output",
  CellChangeTimes->{
   3.5587849711710243`*^9, 3.558785010287386*^9, 3.558785110007272*^9, 
-   3.5587851839460287`*^9, {3.558785678239361*^9, 3.5587857023291616`*^9}},
- CellLabel->"Out[4]="]
+   3.5587851839460287`*^9, {3.558785678239361*^9, 3.5587857023291616`*^9}, 
+   3.5588613991009283`*^9, 3.55886146826828*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"neosWelcome", "[", "]"}]], "Input",
- CellLabel->"In[5]:="],
+ RowBox[{"neosWelcome", "[", "]"}]], "Input"],
 
 Cell[BoxData["\<\"    \
 ________________________________________________________\\n    \\n            \
@@ -1596,101 +1208,123 @@ implied\\n    warranty.  In particular, there is no warranty of any kind \\n  \
 purpose.\\n    \"\>"], "Output",
  CellChangeTimes->{
   3.5587850431679077`*^9, 3.558785180450487*^9, {3.558785699056884*^9, 
-   3.5587857089829063`*^9}},
- CellLabel->"Out[5]="]
+   3.5587857089829063`*^9}, 3.558861481026017*^9}]
 }, Open  ]],
+
+Cell[TextData[{
+ StyleBox["neosVersion", "Input"],
+ " and ",
+ StyleBox["neosPing", "Input"],
+ " return the server version and allows to acknowledge the server status:"
+}], "Text",
+ CellChangeTimes->{{3.558861108617827*^9, 3.558861125624384*^9}, {
+  3.558861204835657*^9, 3.55886121634453*^9}}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"neosVersion", "[", "]"}]], "Input",
- CellLabel->"In[2]:="],
+ RowBox[{"neosVersion", "[", "]"}]], "Input"],
 
 Cell[BoxData["\<\"neos version 5 (Madison)\"\>"], "Output",
  CellChangeTimes->{3.558785126607607*^9, 3.558785167135623*^9, 
-  3.55878571159571*^9, 3.558794658810195*^9},
- CellLabel->"Out[2]="]
+  3.55878571159571*^9, 3.558794658810195*^9, 3.558861495881177*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"neosPing", "[", "]"}]], "Input",
- CellLabel->"In[3]:="],
+ RowBox[{"neosPing", "[", "]"}]], "Input"],
 
 Cell[BoxData["\<\"NeosServer is alive\\n\"\>"], "Output",
  CellChangeTimes->{3.5587851692981377`*^9, 3.558785713144678*^9, 
-  3.558794659893174*^9},
- CellLabel->"Out[3]="]
+  3.558794659893174*^9, 3.5588614979838057`*^9}]
 }, Open  ]],
+
+Cell[TextData[{
+ "The server load can be checked using ",
+ StyleBox["neosPrintQueue", "Input"],
+ ":"
+}], "Text",
+ CellChangeTimes->{{3.558861243039254*^9, 3.558861258063521*^9}, 
+   3.5588624410634604`*^9, {3.558862550932989*^9, 3.558862561099339*^9}, {
+   3.558862625822166*^9, 3.558862662226317*^9}}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"neosPrintQueue", "[", "]"}]], "Input",
- CellLabel->"In[4]:="],
+ RowBox[{"neosPrintQueue", "[", "]"}]], "Input"],
 
-Cell[BoxData["\<\"Running:\\njob# 317814  nco   Ipopt    AMPL  submitted  \
-10/9 05:21 started  10/9 05:21 on neos-4.chtc.wisc.edu  \\njob# 317825  nco   \
-Ipopt    AMPL  submitted  10/9 05:29 started  10/9 06:31 on \
-neos-4.chtc.wisc.edu  \\njob# 317830  milp  Gurobi   GAMS  submitted  10/9 \
-07:05 started  10/9 07:05 on neos-2.chtc.wisc.edu  \\njob# 317910  milp  \
-Gurobi   GAMS  submitted  10/9 08:36 started  10/9 08:37 on \
-neos-1.chtc.wisc.edu  \\njob# 317911  milp  Gurobi   GAMS  submitted  10/9 \
-08:36 started  10/9 08:58 on neos-4.chtc.wisc.edu  \\njob# 317912  milp  \
-Gurobi   GAMS  submitted  10/9 08:37 started  10/9 09:00 on \
-neos-4.chtc.wisc.edu  \\njob# 317918  milp  Gurobi   GAMS  submitted  10/9 \
-09:06 started  10/9 09:06 on neos-4.chtc.wisc.edu  \\njob# 317919  milp  \
-Gurobi   GAMS  submitted  10/9 09:06 started  10/9 09:06 on \
-neos-1.chtc.wisc.edu  \\njob# 317922  milp  Gurobi   GAMS  submitted  10/9 \
-09:12 started  10/9 09:12 on neos-4.chtc.wisc.edu  \\njob# 317927  milp  \
-Gurobi   GAMS  submitted  10/9 09:17 started  10/9 09:17 on \
-neos-1.chtc.wisc.edu  \\njob# 317929  milp  Gurobi   GAMS  submitted  10/9 \
-09:18 started  10/9 09:18 on neos-1.chtc.wisc.edu  \\njob# 317930  milp  \
-Gurobi   GAMS  submitted  10/9 09:19 started  10/9 09:19 on \
-neos-2.chtc.wisc.edu  \\njob# 317932  milp  Gurobi   GAMS  submitted  10/9 \
-09:23 started  10/9 09:23 on neos-1.chtc.wisc.edu  \\njob# 317933  milp  \
-Gurobi   GAMS  submitted  10/9 09:28 started  10/9 09:28 on \
-neos-1.chtc.wisc.edu  \\njob# 317941  milp  Gurobi   GAMS  submitted  10/9 \
-09:40 started  10/9 09:40 on neos-2.chtc.wisc.edu  \\njob# 317943  milp  \
-Gurobi   GAMS  submitted  10/9 09:43 started  10/9 09:43 on \
-neos-4.chtc.wisc.edu  \\njob# 317946  milp  Gurobi   GAMS  submitted  10/9 \
-09:44 started  10/9 09:44 on neos-2.chtc.wisc.edu  \\njob# 317980  minco \
-Bonmin   AMPL  submitted  10/9 10:15 started  10/9 10:15 on \
-neos-2.chtc.wisc.edu  \\njob# 318008  milp  Gurobi   GAMS  submitted  10/9 \
-11:06 started  10/9 11:06 on neos-4.chtc.wisc.edu  \\njob# 318012  milp  \
-Gurobi   GAMS  submitted  10/9 11:07 started  10/9 11:07 on \
-neos-2.chtc.wisc.edu  \\njob# 318014  milp  Gurobi   GAMS  submitted  10/9 \
-11:10 started  10/9 11:10 on neos-2.chtc.wisc.edu  \\njob# 318018  minco \
-Couenne  AMPL  submitted  10/9 11:18 started  10/9 11:18 on \
-neos-1.chtc.wisc.edu  \\njob# 318037  milp  Gurobi   GAMS  submitted  10/9 \
-11:37 started  10/9 11:37 on neos-4.chtc.wisc.edu  \\njob# 318053  minco \
-Bonmin   AMPL  submitted  10/9 11:49 started  10/9 11:49 on \
-neos-2.chtc.wisc.edu  \\njob# 318056  minco Bonmin   AMPL  submitted  10/9 \
-11:53 started  10/9 11:53 on neos-1.chtc.wisc.edu  \\njob# 318060  minco \
-Bonmin   AMPL  submitted  10/9 11:54 started  10/9 11:54 on \
-neos-1.chtc.wisc.edu  \\njob# 318133  milp  Gurobi   GAMS  submitted  10/9 \
-12:50 started  10/9 12:50 on neos-2.chtc.wisc.edu  \\njob# 318136  milp  \
-Gurobi   GAMS  submitted  10/9 12:51 started  10/9 12:51 on \
-neos-2.chtc.wisc.edu  \\njob# 318138  milp  Gurobi   GAMS  submitted  10/9 \
-12:52 started  10/9 12:52 on neos-4.chtc.wisc.edu  \\njob# 318141  milp  \
-Gurobi   GAMS  submitted  10/9 12:52 started  10/9 12:52 on \
-neos-1.chtc.wisc.edu  \\njob# 318146  milp  Gurobi   GAMS  submitted  10/9 \
-12:54 started  10/9 12:54 on neos-4.chtc.wisc.edu  \\njob# 318147  milp  \
-Gurobi   GAMS  submitted  10/9 12:54 started  10/9 12:54 on \
-neos-2.chtc.wisc.edu  \\njob# 318148  milp  Gurobi   GAMS  submitted  10/9 \
-12:55 started  10/9 12:55 on neos-4.chtc.wisc.edu  \\njob# 318152  milp  \
-Gurobi   GAMS  submitted  10/9 12:57 started  10/9 12:57 on \
-neos-1.chtc.wisc.edu  \\njob# 318154  milp  Gurobi   GAMS  submitted  10/9 \
-12:58 started  10/9 12:58 on neos-2.chtc.wisc.edu  \\njob# 318156  nco   \
-Ipopt    AMPL  submitted  10/9 12:59 started  10/9 12:59 on \
-neos-2.chtc.wisc.edu  \\njob# 318163  milp  Gurobi   GAMS  submitted  10/9 \
-13:04 started  10/9 13:04 on neos-1.chtc.wisc.edu  \\n\\nQueued:\\nNo Jobs in \
-Queue.\\n\\n\"\>"], "Output",
- CellChangeTimes->{3.558785171516716*^9, 3.558785714445993*^9, 
-  3.558793557853367*^9, 3.558794661143148*^9},
- CellLabel->"Out[4]="]
+Cell[BoxData[{
+ RowBox[{"Running", ":", 
+  RowBox[{
+  "job", "#", " ", "555551", " ", "0.04", "X", " ", "0.04", "XX", " ", "0.04",
+    "X", " ", "submitted", " ", 
+   RowBox[{"MM", "/", "DD"}], " ", 
+   RowBox[{"HH", ":", 
+    RowBox[{"MM", " ", "started", " ", 
+     RowBox[{"MM", "/", "DD"}], " ", 
+     RowBox[{"HH", ":", 
+      RowBox[{"MM", " ", "on", " ", 
+       RowBox[{"domain", ".", "name", ".", "tld"}]}]}]}]}]}]}], "\n", 
+ RowBox[{"job", "#", " ", "555552", " ", "0.04", "X", " ", "0.04", "XX", " ", 
+  "0.04", "X", " ", "submitted", " ", 
+  RowBox[{"MM", "/", "DD"}], " ", 
+  RowBox[{"HH", ":", 
+   RowBox[{"MM", " ", "started", " ", 
+    RowBox[{"MM", "/", "DD"}], " ", 
+    RowBox[{"HH", ":", 
+     RowBox[{"MM", " ", "on", " ", 
+      RowBox[{"domain", ".", "name", ".", "tld"}]}]}]}]}]}], "\n", 
+ RowBox[{"job", "#", " ", "555553", " ", "0.04", "X", " ", "0.04", "XX", " ", 
+  "0.04", "X", " ", "submitted", " ", 
+  RowBox[{"MM", "/", "DD"}], " ", 
+  RowBox[{"HH", ":", 
+   RowBox[{"MM", " ", "started", " ", 
+    RowBox[{"MM", "/", "DD"}], " ", 
+    RowBox[{"HH", ":", 
+     RowBox[{"MM", " ", "on", " ", 
+      RowBox[{"domain", ".", "name", ".", "tld"}]}]}]}]}]}], "\n", 
+ RowBox[{"job", "#", " ", "555554", " ", "0.04", "X", " ", "0.04", "XX", " ", 
+  "0.04", "X", " ", "submitted", " ", 
+  RowBox[{"MM", "/", "DD"}], " ", 
+  RowBox[{"HH", ":", 
+   RowBox[{"MM", " ", "started", " ", 
+    RowBox[{"MM", "/", "DD"}], " ", 
+    RowBox[{"HH", ":", 
+     RowBox[{"MM", " ", "on", " ", 
+      RowBox[{"domain", ".", "name", ".", "tld"}]}]}]}]}]}], "\n", 
+ RowBox[{
+  RowBox[{
+  "job", "#", " ", "555555", " ", "0.04", "X", " ", "0.04", "XX", " ", "0.04",
+    "X", " ", "submitted", " ", 
+   RowBox[{"MM", "/", "DD"}], " ", 
+   RowBox[{"HH", ":", 
+    RowBox[{"MM", " ", "started", " ", 
+     RowBox[{"MM", "/", "DD"}], " ", 
+     RowBox[{"HH", ":", 
+      RowBox[{"MM", " ", "on", " ", 
+       RowBox[{"domain", ".", "name", ".", "tld"}]}]}]}]}]}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{"Queued", ":", 
+  RowBox[{"No", " ", "Jobs", " ", "in", " ", 
+   RowBox[{"Queue", "."}]}]}]}], "Output",
+ CellChangeTimes->{{3.558862483941743*^9, 3.558862492708437*^9}}]
 }, Open  ]],
+
+Cell["\<\
+The output (with fake data in this example) shows a line per job, listing job \
+number, category, user name, input method, submit date, execution date and \
+server address.
+
+A job is submitted encoding its description in the chosen modeling language \
+using the corresponding XML format. More information on this can be found on \
+the NEOS solvers page, selecting the used solver and then following the \
+\[LeftGuillemet]XML-RPC\[RightGuillemet] link on the upper-right part of the \
+shown page. For instance the following string encodes in AMPL the simple \
+problem of learning the binary OR function through a linear support vector \
+machine:\
+\>", "Text",
+ CellChangeTimes->{3.558862741231708*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -1706,18 +1340,25 @@ sample labels\nparam dot{i in 1..m,j in 1..m}:=sum{k in 1..n}(x[i,k]*x[j,k]);\
 1..m}alpha[i]*alpha[j]*y[i]*y[j]*dot[i,j];\n\nsubject to linear_constraint:\n\
 sum{i in 1..m} alpha[i]*y[i]=0;\n\nsubject to w_def{k in 1..n}:\nw[k]=sum{i \
 in 1..m} alpha[i]*y[i]*x[i,k];\n\n]]></model>\n\n<data><![CDATA[\n\ndata;\n\n\
-param   x:      1       2       :=\n1       -0.9    -0.9\n2       0.9     \
--0.9\n3       -0.9    0.9\n4       0.9     0.9     ;\n\nparam y :=\n1       \
--1\n2       1\n3       1\n4       1;\n\n]]></data>\n\n<commands><![CDATA[\n\n\
-option solver snopt;\n\nsolve;\n\nprintf: \\\"{{\\\";\nprintf {k in \
-1..n-1}:\\\"%f,\\\",w[k];\nprintf: \\\"%f},\\\",w[n];\nprintf: \\\"%f}\\\\n\\\
-\",sum{i in 1..m:alpha[i]>0} (y[i]-sum{k in 1..n}w[k]*x[i,k])/sum{j in \
-1..m:alpha[j]>0} 1;\n\n]]></commands>\n\n</document>\>\""}], ";"}]], "Input",
+param   x:      1       2       :=\n1       0    0\n2       0    1\n3       1 \
+   0\n4       1    1     ;\n\nparam y :=\n1       -1\n2       1\n3       1\n4 \
+      1;\n\n]]></data>\n\n<commands><![CDATA[\n\noption solver snopt;\n\n\
+solve;\n\nprintf: \\\"{{\\\";\nprintf {k in 1..n-1}:\\\"%f,\\\",w[k];\n\
+printf: \\\"%f},\\\",w[n];\nprintf: \\\"%f}\\\\n\\\",sum{i in \
+1..m:alpha[i]>0} (y[i]-sum{k in 1..n}w[k]*x[i,k])/sum{j in 1..m:alpha[j]>0} \
+1;\n\n]]></commands>\n\n</document>\>\""}], ";"}]], "Input",
  CellChangeTimes->{{3.5587855235577803`*^9, 3.558785592139913*^9}, {
    3.558785855471799*^9, 3.558786061562188*^9}, {3.5587934191453953`*^9, 
    3.558793449983152*^9}, 3.55879348477147*^9, {3.558793971214576*^9, 
-   3.558793973741453*^9}},
- CellLabel->"In[6]:="],
+   3.558793973741453*^9}, {3.558801097350367*^9, 3.558801138057866*^9}, {
+   3.5588011745987797`*^9, 3.5588011749893436`*^9}}],
+
+Cell[TextData[{
+ "Once written, this description is submitted to the server through the ",
+ StyleBox["neosSubmitJob", "Input"],
+ " function:"
+}], "Text",
+ CellChangeTimes->{3.558862799526875*^9}],
 
 Cell[CellGroupData[{
 
@@ -1725,76 +1366,127 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"{", 
    RowBox[{"jobNum", ",", "jobPwd"}], "}"}], "=", 
-  RowBox[{"neosSubmitJob", "[", "request", "]"}]}]], "Input",
- CellLabel->"In[7]:="],
+  RowBox[{"neosSubmitJob", "[", "request", "]"}]}]], "Input"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"\<\"318165\"\>", ",", "\<\"jumqWRgF\"\>"}], "}"}]], "Output",
+  RowBox[{"\<\"319185\"\>", ",", "\<\"TzXLdZUf\"\>"}], "}"}]], "Output",
  CellChangeTimes->{
   3.55878563468655*^9, 3.558785720790818*^9, 3.558785915171774*^9, {
    3.558786044470634*^9, 3.558786068143469*^9}, 3.558786284312611*^9, 
-   3.5587935152379913`*^9, 3.558793976272286*^9, 3.558794680115014*^9},
- CellLabel->"Out[7]="]
+   3.5587935152379913`*^9, 3.558793976272286*^9, 3.558794680115014*^9, {
+   3.558801148630221*^9, 3.5588011779901667`*^9}, 3.558861532580126*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "If no errors occurred, the function returns a list containing the assigned \
+job number and a password, both to be used in order to pose queries for the \
+submitted job. Otherwise, a string describing the error is returned. Typical \
+queries concerns the job status retrieval, obtained through the function ",
+ StyleBox["neosGetJobStatus", "Input"],
+ ", returning either ",
+ StyleBox["\[OpenCurlyDoubleQuote]Done\[CloseCurlyDoubleQuote]", "Input"],
+ ", ",
+ StyleBox["\[OpenCurlyDoubleQuote]Running\[CloseCurlyDoubleQuote]", "Input"],
+ ", ",
+ StyleBox["\[OpenCurlyDoubleQuote]Waiting\[CloseCurlyDoubleQuote]", "Input"],
+ ", ",
+ StyleBox["\[OpenCurlyDoubleQuote]Unknown Job\[CloseCurlyDoubleQuote]", 
+  "Input"],
+ ", or ",
+ StyleBox["\[OpenCurlyDoubleQuote]Bad Password\[CloseCurlyDoubleQuote]", 
+  "Input"],
+ ":"
+}], "Text",
+ CellChangeTimes->{{3.558862892053891*^9, 3.558862954895494*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"neosGetJobStatus", "[", 
+  RowBox[{"jobNum", ",", "jobPwd"}], "]"}]], "Input"],
+
+Cell[BoxData["\<\"Waiting\"\>"], "Output",
+ CellChangeTimes->{
+  3.5587860714565067`*^9, 3.558786286863306*^9, {3.5587935171946907`*^9, 
+   3.55879354930999*^9}, 3.5587939443692627`*^9, 3.558793977992642*^9, 
+   3.558794682421678*^9, {3.5588011516632032`*^9, 3.558801179414298*^9}, 
+   3.5588615376724777`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"neosGetJobStatus", "[", 
-  RowBox[{"jobNum", ",", "jobPwd"}], "]"}]], "Input",
- CellLabel->"In[8]:="],
+  RowBox[{"jobNum", ",", "jobPwd"}], "]"}]], "Input"],
 
 Cell[BoxData["\<\"Done\"\>"], "Output",
- CellChangeTimes->{
-  3.5587860714565067`*^9, 3.558786286863306*^9, {3.5587935171946907`*^9, 
-   3.55879354930999*^9}, 3.5587939443692627`*^9, 3.558793977992642*^9, 
-   3.558794682421678*^9},
- CellLabel->"Out[8]="]
+ CellChangeTimes->{3.558862290740903*^9}]
 }, Open  ]],
+
+Cell[TextData[{
+ "Once a job has been executed, its results are fetched through the function ",
+ StyleBox["neosGetFinalResults", "Input"],
+ ":"
+}], "Text",
+ CellChangeTimes->{3.558863026859717*^9}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"res", "=", 
   RowBox[{"neosGetFinalResults", "[", 
-   RowBox[{"jobNum", ",", "jobPwd"}], "]"}]}]], "Input",
- CellLabel->"In[9]:="],
+   RowBox[{"jobNum", ",", "jobPwd"}], "]"}]}]], "Input"],
 
-Cell[BoxData["\<\"Job 318165 sent to neos-1.chtc.wisc.edu\\npassword: \
-jumqWRgF\\n---------- Begin Solver Output -----------\\nExecuting \
-/opt/neos/Drivers/snopt-ampl/snopt-driver.py at time: 2012-10-09 \
-13:04:40.141267\\nFile exists\\nYou are using the solver snopt.\\nExecuting \
-AMPL.\\nprocessing data.\\nprocessing commands.\\n\\n6 variables:\\n\\t4 \
-nonlinear variables\\n\\t2 linear variables\\n3 constraints, all linear; 14 \
+Cell[BoxData["\<\"Job 319185 sent to neos-4.chtc.wisc.edu\\npassword: \
+TzXLdZUf\\n---------- Begin Solver Output -----------\\nExecuting \
+/opt/neos/Drivers/snopt-ampl/snopt-driver.py at time: 2012-10-10 \
+12:43:12.402268\\nFile exists\\nYou are using the solver snopt.\\nExecuting \
+AMPL.\\nprocessing data.\\nprocessing commands.\\n\\n6 variables:\\n\\t3 \
+nonlinear variables\\n\\t3 linear variables\\n3 constraints, all linear; 10 \
 nonzeros\\n\\t3 equality constraints\\n1 nonlinear objective; 4 \
-nonzeros.\\n\\nSNOPT 7.2-10 : Optimal solution found.\\n5 iterations, \
-objective 1.234567901\\n{{1.111111,1.111111},1.000000}\\n\"\>"], "Output",
- CellChangeTimes->{3.558786075151786*^9, 3.558786291820293*^9, 
-  3.558793946999754*^9, 3.5587939795851803`*^9, 3.558794685127276*^9},
- CellLabel->"Out[9]="]
+nonzeros.\\n\\nSNOPT 7.2-10 : Optimal solution found.\\n2 iterations, \
+objective 4\\n{{2.000000,2.000000},-1.000000}\\n\"\>"], "Output",
+ CellChangeTimes->{
+  3.558786075151786*^9, 3.558786291820293*^9, 3.558793946999754*^9, 
+   3.5587939795851803`*^9, 3.558794685127276*^9, {3.55880115418006*^9, 
+   3.55880118219619*^9}, 3.558862294264058*^9}]
 }, Open  ]],
+
+Cell[TextData[{
+ "Finally, the function ",
+ StyleBox["neosSolveJob", "Input"],
+ " handles all the communication with the NEOS server, submitting a job and \
+blocking until it completes, subsequently returning the results:"
+}], "Text",
+ CellChangeTimes->{3.558863064285489*^9}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"theResult", "=", 
-  RowBox[{"neosSolveJob", "[", "request", "]"}]}]], "Input",
- CellLabel->"In[13]:="],
+  RowBox[{"neosSolveJob", "[", "request", "]"}]}]], "Input"],
 
-Cell[BoxData["\<\"Job 318173 sent to neos-1.chtc.wisc.edu\\npassword: \
-hdpMVFRe\\n---------- Begin Solver Output -----------\\nExecuting \
-/opt/neos/Drivers/snopt-ampl/snopt-driver.py at time: 2012-10-09 \
-13:07:24.727683\\nFile exists\\nYou are using the solver snopt.\\nExecuting \
-AMPL.\\nprocessing data.\\nprocessing commands.\\n\\n6 variables:\\n\\t4 \
-nonlinear variables\\n\\t2 linear variables\\n3 constraints, all linear; 14 \
+Cell[BoxData["\<\"Job 319194 sent to neos-2.chtc.wisc.edu\\npassword: \
+iwJMtHEn\\n---------- Begin Solver Output -----------\\nExecuting \
+/opt/neos/Drivers/snopt-ampl/snopt-driver.py at time: 2012-10-10 \
+06:57:58.361491\\nFile exists\\nYou are using the solver snopt.\\nExecuting \
+AMPL.\\nprocessing data.\\nprocessing commands.\\n\\n6 variables:\\n\\t3 \
+nonlinear variables\\n\\t3 linear variables\\n3 constraints, all linear; 10 \
 nonzeros\\n\\t3 equality constraints\\n1 nonlinear objective; 4 \
-nonzeros.\\n\\nSNOPT 7.2-10 : Optimal solution found.\\n5 iterations, \
-objective 1.234567901\\n{{1.111111,1.111111},1.000000}\\n\"\>"], "Output",
+nonzeros.\\n\\nSNOPT 7.2-10 : Optimal solution found.\\n2 iterations, \
+objective 4\\n{{2.000000,2.000000},-1.000000}\\n\"\>"], "Output",
  CellChangeTimes->{3.5587860848930473`*^9, 3.558794002584149*^9, 
-  3.558794691813334*^9, 3.5587948560333757`*^9},
- CellLabel->"Out[13]="]
+  3.558794691813334*^9, 3.5587948560333757`*^9, 3.558801187945588*^9, 
+  3.558862683336071*^9}]
 }, Open  ]],
+
+Cell["\<\
+Of course, in order to actually process the obtained results it will be \
+necessary to strip out the initial part of the output and possibly convert \
+the remaining part:\
+\>", "Text",
+ CellChangeTimes->{3.5588631263558893`*^9}],
 
 Cell[CellGroupData[{
 
@@ -1809,28 +1501,30 @@ Cell[BoxData[
         RowBox[{"\"\<}\>\"", "~~", "___"}]}]}]}], "\[Rule]", 
      RowBox[{"\"\<{{\>\"", "~~", 
       RowBox[{"o", "~~", "\"\<}\>\""}]}]}]}], "]"}], "//", 
-  "ToExpression"}]], "Input",
- CellLabel->"In[14]:="],
+  "ToExpression"}]], "Input"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{"{", 
-    RowBox[{"1.111111`", ",", "1.111111`"}], "}"}], ",", "1.`"}], 
-  "}"}]], "Output",
- CellChangeTimes->{3.558794702662599*^9, 3.558794860722975*^9},
- CellLabel->"Out[14]="]
+    RowBox[{"2.`", ",", "2.`"}], "}"}], ",", 
+   RowBox[{"-", "1.`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.558794702662599*^9, 3.558794860722975*^9, 
+  3.558863104228134*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
 WindowToolbars->{"RulerBar", "EditBar"},
-WindowSize->{725, 718},
-WindowMargins->{{38, Automatic}, {Automatic, 0}},
+WindowSize->{1053, 788},
+WindowMargins->{{38, Automatic}, {Automatic, 1}},
 ShowSelection->True,
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.5, 1.5 Inherited],
 FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (November 6, \
 2010)",
-StyleDefinitions->"HelpBrowser.nb"
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "AutomatedReport.nb", 
+  CharacterEncoding -> "UTF-8"]
 ]
 (* End of Notebook Content *)
 
@@ -1844,65 +1538,119 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[579, 22, 105, 2, 107, "Chapter"],
-Cell[687, 26, 191, 6, 64, "TitlePageLogo"],
-Cell[881, 34, 34, 0, 59, "Section"],
+Cell[579, 22, 103, 2, 240, "Title"],
+Cell[685, 26, 239, 7, 148, "Author"],
 Cell[CellGroupData[{
-Cell[940, 38, 55, 0, 33, "Section"],
-Cell[998, 40, 615, 14, 59, "Text"],
-Cell[1616, 56, 12084, 298, 96, "DefinitionBox"],
-Cell[13703, 356, 20015, 490, 138, "DefinitionBox"],
-Cell[33721, 848, 14270, 349, 96, "DefinitionBox"],
-Cell[47994, 1199, 5482, 135, 68, "DefinitionBox"]
+Cell[949, 37, 34, 0, 99, "Section"],
+Cell[986, 39, 472, 13, 62, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[53513, 1339, 36, 0, 59, "Section"],
-Cell[53552, 1341, 116, 5, 20, "Text"],
-Cell[53671, 1348, 76, 2, 23, "Input"],
-Cell[CellGroupData[{
-Cell[53772, 1354, 79, 2, 23, "Input"],
-Cell[53854, 1358, 9267, 121, 3293, "Output"]
+Cell[1495, 57, 55, 0, 99, "Section"],
+Cell[1553, 59, 1022, 29, 129, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[63158, 1484, 84, 2, 23, "Input"],
-Cell[63245, 1488, 5793, 77, 3263, "Output"]
+Cell[2612, 93, 104, 1, 99, "Section"],
+Cell[2719, 96, 143, 3, 39, "Text"],
+Cell[2865, 101, 484, 13, 64, "Code"],
+Cell[3352, 116, 192, 4, 39, "Text"],
+Cell[3547, 122, 489, 13, 64, "Code"],
+Cell[4039, 137, 301, 5, 39, "Text"],
+Cell[4343, 144, 487, 13, 64, "Code"],
+Cell[4833, 159, 213, 5, 39, "Text"],
+Cell[5049, 166, 487, 13, 64, "Code"],
+Cell[5539, 181, 179, 4, 39, "Text"],
+Cell[5721, 187, 484, 13, 64, "Code"],
+Cell[6208, 202, 259, 8, 39, "Text"],
+Cell[6470, 212, 490, 13, 64, "Code"],
+Cell[6963, 227, 184, 4, 39, "Text"],
+Cell[7150, 233, 598, 17, 64, "Code"],
+Cell[7751, 252, 565, 14, 61, "Text"],
+Cell[8319, 268, 2327, 60, 67, "Code"],
+Cell[10649, 330, 788, 33, 39, "Text"],
+Cell[11440, 365, 1696, 46, 64, "Code"],
+Cell[13139, 413, 494, 14, 39, "Text"],
+Cell[13636, 429, 597, 17, 64, "Code"],
+Cell[14236, 448, 494, 11, 39, "Text"],
+Cell[14733, 461, 1691, 46, 64, "Code"],
+Cell[16427, 509, 518, 16, 39, "Text"],
+Cell[16948, 527, 1688, 46, 64, "Code"],
+Cell[18639, 575, 325, 12, 39, "Text"],
+Cell[18967, 589, 2324, 63, 64, "Code"],
+Cell[21294, 654, 618, 17, 61, "Text"],
+Cell[21915, 673, 494, 13, 64, "Code"],
+Cell[22412, 688, 180, 4, 39, "Text"],
+Cell[22595, 694, 494, 13, 64, "Code"],
+Cell[23092, 709, 277, 8, 39, "Text"],
+Cell[23372, 719, 621, 18, 64, "Code"],
+Cell[23996, 739, 344, 11, 39, "Text"],
+Cell[24343, 752, 826, 25, 64, "Code"],
+Cell[25172, 779, 434, 16, 39, "Text"],
+Cell[25609, 797, 2202, 59, 64, "Code"],
+Cell[27814, 858, 557, 17, 39, "Text"],
+Cell[28374, 877, 1707, 46, 64, "Code"],
+Cell[30084, 925, 463, 13, 62, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[69075, 1570, 82, 2, 23, "Input"],
-Cell[69160, 1574, 1681, 25, 608, "Output"]
+Cell[30584, 943, 77, 1, 99, "Section"],
+Cell[30664, 946, 116, 5, 39, "Text"],
+Cell[30783, 953, 52, 1, 28, "Input"],
+Cell[30838, 956, 267, 9, 39, "Text"],
+Cell[CellGroupData[{
+Cell[31130, 969, 56, 1, 28, "Input"],
+Cell[31189, 972, 9267, 121, 4935, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[70878, 1604, 82, 2, 23, "Input"],
-Cell[70963, 1608, 192, 3, 22, "Output"]
+Cell[40493, 1098, 61, 1, 28, "Input"],
+Cell[40557, 1101, 5819, 77, 4890, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[71192, 1616, 79, 2, 23, "Input"],
-Cell[71274, 1620, 171, 3, 38, "Output"]
+Cell[46413, 1183, 59, 1, 28, "Input"],
+Cell[46475, 1186, 1680, 24, 928, "Output"]
+}, Open  ]],
+Cell[48170, 1213, 293, 7, 39, "Text"],
+Cell[CellGroupData[{
+Cell[48488, 1224, 59, 1, 28, "Input"],
+Cell[48550, 1227, 191, 2, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[71482, 1628, 85, 2, 23, "Input"],
-Cell[71570, 1632, 4176, 59, 1208, "Output"]
+Cell[48778, 1234, 56, 1, 28, "Input"],
+Cell[48837, 1237, 172, 2, 52, "Output"]
 }, Open  ]],
-Cell[75761, 1694, 1589, 25, 924, "Input"],
+Cell[49024, 1242, 302, 7, 39, "Text"],
 Cell[CellGroupData[{
-Cell[77375, 1723, 175, 5, 23, "Input"],
-Cell[77553, 1730, 356, 7, 22, "Output"]
+Cell[49351, 1253, 62, 1, 28, "Input"],
+Cell[49416, 1256, 2179, 54, 282, "Output"]
+}, Open  ]],
+Cell[51610, 1313, 710, 13, 174, "Text"],
+Cell[52323, 1328, 1644, 25, 1412, "Input"],
+Cell[53970, 1355, 195, 5, 39, "Text"],
+Cell[CellGroupData[{
+Cell[54190, 1364, 152, 4, 28, "Input"],
+Cell[54345, 1370, 407, 7, 28, "Output"]
+}, Open  ]],
+Cell[54767, 1380, 907, 20, 107, "Text"],
+Cell[CellGroupData[{
+Cell[55699, 1404, 102, 2, 28, "Input"],
+Cell[55804, 1408, 310, 5, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[77946, 1742, 125, 3, 23, "Input"],
-Cell[78074, 1747, 254, 5, 22, "Output"]
+Cell[56151, 1418, 102, 2, 28, "Input"],
+Cell[56256, 1422, 81, 1, 28, "Output"]
 }, Open  ]],
+Cell[56352, 1426, 197, 5, 39, "Text"],
 Cell[CellGroupData[{
-Cell[78365, 1757, 154, 4, 23, "Input"],
-Cell[78522, 1763, 808, 11, 338, "Output"]
+Cell[56574, 1435, 131, 3, 28, "Input"],
+Cell[56708, 1440, 850, 12, 512, "Output"]
 }, Open  ]],
+Cell[57573, 1455, 276, 6, 62, "Text"],
 Cell[CellGroupData[{
-Cell[79367, 1779, 126, 3, 23, "Input"],
-Cell[79496, 1784, 789, 11, 338, "Output"]
+Cell[57874, 1465, 102, 2, 28, "Input"],
+Cell[57979, 1469, 803, 11, 512, "Output"]
 }, Open  ]],
+Cell[58797, 1483, 238, 5, 62, "Text"],
 Cell[CellGroupData[{
-Cell[80322, 1800, 400, 12, 39, "Input"],
-Cell[80725, 1814, 231, 7, 22, "Output"]
+Cell[59060, 1492, 376, 11, 53, "Input"],
+Cell[59439, 1505, 236, 7, 28, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
