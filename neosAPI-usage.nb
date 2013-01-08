@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     63988,       1652]
-NotebookOptionsPosition[     59715,       1517]
-NotebookOutlinePosition[     60304,       1538]
-CellTagsIndexPosition[     60261,       1535]
+NotebookDataLength[     66878,       1713]
+NotebookOptionsPosition[     62530,       1577]
+NotebookOutlinePosition[     63119,       1598]
+CellTagsIndexPosition[     63076,       1595]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -32,6 +32,66 @@ Via Comelico 39/41 2135 Milano ITALY
 malchiodi@di.unimi.it\
 \>", "Author",
  CellChangeTimes->{{3.5588070250565042`*^9, 3.5588070357628717`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+       "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+        "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+        "**", "**"}], "*", "\n", "       ", "Copyright", " ", 
+      RowBox[{"(", "C", ")"}], " ", "2010", " ", "Dario", " ", "Malchiodi"}], 
+     " ", "<", 
+     RowBox[{
+      RowBox[{"malchiodi", "@", "di"}], ".", "unimi", ".", "it"}], ">", "\n", 
+     "\n", 
+     RowBox[{"This", " ", "file", " ", "is", " ", "part", " ", "of", " ", 
+      RowBox[{"neosAPI", ".", "\n", "neosAPI"}], " ", "is", " ", "free", " ", 
+      "software"}]}], ";", " ", 
+    RowBox[{"you", " ", "can", " ", "redistribute", " ", "it", " ", 
+     RowBox[{"and", "/", "or"}], " ", "modify", " ", "it", " ", "under", " ", 
+     "the", "\n", "terms", " ", "of", " ", "the", " ", "GNU", " ", "Lesser", 
+     " ", "General", " ", "Public", " ", "License", " ", "as", " ", 
+     "published", " ", "by", " ", "the", " ", "Free", "\n", "Software", " ", 
+     "Foundation"}], ";", " ", 
+    RowBox[{
+    "either", " ", "version", " ", "2.1", " ", "of", " ", "the", " ", 
+     "License"}]}], ",", " ", 
+   RowBox[{"or", " ", 
+    RowBox[{"(", 
+     RowBox[{"at", " ", "your", " ", "option"}], ")"}], "\n", "any", " ", 
+    "later", " ", 
+    RowBox[{"version", ".", "\n", "neosAPI"}], " ", "is", " ", "distributed", 
+    " ", "in", " ", "the", " ", "hope", " ", "that", " ", "it", " ", "will", 
+    " ", "be", " ", "useful"}], ",", " ", 
+   RowBox[{
+    RowBox[{"but", " ", "without", " ", "any", "\n", "warranty"}], ";", " ", 
+    RowBox[{
+    "without", " ", "even", " ", "the", " ", "implied", " ", "warranty", " ", 
+     "of", " ", "merchantability", " ", "or", " ", "fitness", "\n", "for", 
+     " ", "a", " ", "particular", " ", 
+     RowBox[{"purpose", ".", " ", "See"}], " ", "the", " ", "GNU", " ", 
+     "Lesser", " ", "General", " ", "Public", " ", "License", " ", "for", 
+     "\n", "more", " ", 
+     RowBox[{"details", ".", "\n", "You"}], " ", "should", " ", "have", " ", 
+     "received", " ", "a", " ", "copy", " ", "of", " ", "the", " ", "GNU", 
+     " ", "Lesser", " ", "General", " ", "Public", " ", "License", "\n", 
+     "along", " ", "with", " ", "neosAPI"}], ";", " ", 
+    RowBox[{"if", " ", "not"}]}], ",", " ", 
+   RowBox[{
+    RowBox[{"see", " ", "<", 
+     RowBox[{"http", ":"}]}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"www", ".", "gnu", ".", "org"}], "/", "licenses"}], "/"}], ">",
+      "."}]}]}], "\n", "\n", 
+  "******************************************************************************)"}\
+]], "Code"],
 
 Cell[CellGroupData[{
 
@@ -79,14 +139,14 @@ file ",
   FontSlant->"Italic"],
  " system- or user-based root directory). The xmlRPC package, described at \
 the address ",
- StyleBox["http://malchiodi.di.unimi.it/software//xmlRPC",
+ StyleBox["http://malchiodi.di.unimi.it/software//neosAPI",
   FontFamily->"Courier",
   FontSize->11],
  ", needs to be previously installed."
 }], "Text",
  CellChangeTimes->{{3.558810394084673*^9, 3.5588104211320972`*^9}, {
   3.5588526843908453`*^9, 3.5588527115540247`*^9}, {3.558852781289112*^9, 
-  3.5588530244975157`*^9}}]
+  3.5588530244975157`*^9}, {3.558877805174643*^9, 3.558877806393344*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1517,7 +1577,7 @@ Cell[BoxData[
 },
 WindowToolbars->{"RulerBar", "EditBar"},
 WindowSize->{1053, 788},
-WindowMargins->{{38, Automatic}, {Automatic, 1}},
+WindowMargins->{{Automatic, 15}, {Automatic, 0}},
 ShowSelection->True,
 Magnification:>FEPrivate`If[
   FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.5, 1.5 Inherited],
@@ -1540,117 +1600,118 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[579, 22, 103, 2, 240, "Title"],
 Cell[685, 26, 239, 7, 148, "Author"],
+Cell[927, 35, 2765, 58, 410, "Code"],
 Cell[CellGroupData[{
-Cell[949, 37, 34, 0, 99, "Section"],
-Cell[986, 39, 472, 13, 62, "Text"]
+Cell[3717, 97, 34, 0, 99, "Section"],
+Cell[3754, 99, 472, 13, 62, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1495, 57, 55, 0, 99, "Section"],
-Cell[1553, 59, 1022, 29, 129, "Text"]
+Cell[4263, 117, 55, 0, 99, "Section"],
+Cell[4321, 119, 1069, 29, 129, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2612, 93, 104, 1, 99, "Section"],
-Cell[2719, 96, 143, 3, 39, "Text"],
-Cell[2865, 101, 484, 13, 64, "Code"],
-Cell[3352, 116, 192, 4, 39, "Text"],
-Cell[3547, 122, 489, 13, 64, "Code"],
-Cell[4039, 137, 301, 5, 39, "Text"],
-Cell[4343, 144, 487, 13, 64, "Code"],
-Cell[4833, 159, 213, 5, 39, "Text"],
-Cell[5049, 166, 487, 13, 64, "Code"],
-Cell[5539, 181, 179, 4, 39, "Text"],
-Cell[5721, 187, 484, 13, 64, "Code"],
-Cell[6208, 202, 259, 8, 39, "Text"],
-Cell[6470, 212, 490, 13, 64, "Code"],
-Cell[6963, 227, 184, 4, 39, "Text"],
-Cell[7150, 233, 598, 17, 64, "Code"],
-Cell[7751, 252, 565, 14, 61, "Text"],
-Cell[8319, 268, 2327, 60, 67, "Code"],
-Cell[10649, 330, 788, 33, 39, "Text"],
-Cell[11440, 365, 1696, 46, 64, "Code"],
-Cell[13139, 413, 494, 14, 39, "Text"],
-Cell[13636, 429, 597, 17, 64, "Code"],
-Cell[14236, 448, 494, 11, 39, "Text"],
-Cell[14733, 461, 1691, 46, 64, "Code"],
-Cell[16427, 509, 518, 16, 39, "Text"],
-Cell[16948, 527, 1688, 46, 64, "Code"],
-Cell[18639, 575, 325, 12, 39, "Text"],
-Cell[18967, 589, 2324, 63, 64, "Code"],
-Cell[21294, 654, 618, 17, 61, "Text"],
-Cell[21915, 673, 494, 13, 64, "Code"],
-Cell[22412, 688, 180, 4, 39, "Text"],
-Cell[22595, 694, 494, 13, 64, "Code"],
-Cell[23092, 709, 277, 8, 39, "Text"],
-Cell[23372, 719, 621, 18, 64, "Code"],
-Cell[23996, 739, 344, 11, 39, "Text"],
-Cell[24343, 752, 826, 25, 64, "Code"],
-Cell[25172, 779, 434, 16, 39, "Text"],
-Cell[25609, 797, 2202, 59, 64, "Code"],
-Cell[27814, 858, 557, 17, 39, "Text"],
-Cell[28374, 877, 1707, 46, 64, "Code"],
-Cell[30084, 925, 463, 13, 62, "Text"]
+Cell[5427, 153, 104, 1, 99, "Section"],
+Cell[5534, 156, 143, 3, 39, "Text"],
+Cell[5680, 161, 484, 13, 64, "Code"],
+Cell[6167, 176, 192, 4, 39, "Text"],
+Cell[6362, 182, 489, 13, 64, "Code"],
+Cell[6854, 197, 301, 5, 39, "Text"],
+Cell[7158, 204, 487, 13, 64, "Code"],
+Cell[7648, 219, 213, 5, 39, "Text"],
+Cell[7864, 226, 487, 13, 64, "Code"],
+Cell[8354, 241, 179, 4, 39, "Text"],
+Cell[8536, 247, 484, 13, 64, "Code"],
+Cell[9023, 262, 259, 8, 39, "Text"],
+Cell[9285, 272, 490, 13, 64, "Code"],
+Cell[9778, 287, 184, 4, 39, "Text"],
+Cell[9965, 293, 598, 17, 96, "Code"],
+Cell[10566, 312, 565, 14, 93, "Text"],
+Cell[11134, 328, 2327, 60, 99, "Code"],
+Cell[13464, 390, 788, 33, 93, "Text"],
+Cell[14255, 425, 1696, 46, 144, "Code"],
+Cell[15954, 473, 494, 14, 87, "Text"],
+Cell[16451, 489, 597, 17, 144, "Code"],
+Cell[17051, 508, 494, 11, 87, "Text"],
+Cell[17548, 521, 1691, 46, 144, "Code"],
+Cell[19242, 569, 518, 16, 87, "Text"],
+Cell[19763, 587, 1688, 46, 144, "Code"],
+Cell[21454, 635, 325, 12, 87, "Text"],
+Cell[21782, 649, 2324, 63, 144, "Code"],
+Cell[24109, 714, 618, 17, 136, "Text"],
+Cell[24730, 733, 494, 13, 144, "Code"],
+Cell[25227, 748, 180, 4, 87, "Text"],
+Cell[25410, 754, 494, 13, 144, "Code"],
+Cell[25907, 769, 277, 8, 87, "Text"],
+Cell[26187, 779, 621, 18, 144, "Code"],
+Cell[26811, 799, 344, 11, 87, "Text"],
+Cell[27158, 812, 826, 25, 144, "Code"],
+Cell[27987, 839, 434, 16, 87, "Text"],
+Cell[28424, 857, 2202, 59, 144, "Code"],
+Cell[30629, 918, 557, 17, 87, "Text"],
+Cell[31189, 937, 1707, 46, 144, "Code"],
+Cell[32899, 985, 463, 13, 139, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[30584, 943, 77, 1, 99, "Section"],
-Cell[30664, 946, 116, 5, 39, "Text"],
-Cell[30783, 953, 52, 1, 28, "Input"],
-Cell[30838, 956, 267, 9, 39, "Text"],
+Cell[33399, 1003, 77, 1, 222, "Section"],
+Cell[33479, 1006, 116, 5, 87, "Text"],
+Cell[33598, 1013, 52, 1, 63, "Input"],
+Cell[33653, 1016, 267, 9, 87, "Text"],
 Cell[CellGroupData[{
-Cell[31130, 969, 56, 1, 28, "Input"],
-Cell[31189, 972, 9267, 121, 4935, "Output"]
+Cell[33945, 1029, 56, 1, 63, "Input"],
+Cell[34004, 1032, 9267, 121, 11103, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[40493, 1098, 61, 1, 28, "Input"],
-Cell[40557, 1101, 5819, 77, 4890, "Output"]
+Cell[43308, 1158, 61, 1, 63, "Input"],
+Cell[43372, 1161, 5819, 77, 11002, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[46413, 1183, 59, 1, 28, "Input"],
-Cell[46475, 1186, 1680, 24, 928, "Output"]
+Cell[49228, 1243, 59, 1, 63, "Input"],
+Cell[49290, 1246, 1680, 24, 2088, "Output"]
 }, Open  ]],
-Cell[48170, 1213, 293, 7, 39, "Text"],
+Cell[50985, 1273, 293, 7, 87, "Text"],
 Cell[CellGroupData[{
-Cell[48488, 1224, 59, 1, 28, "Input"],
-Cell[48550, 1227, 191, 2, 28, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[48778, 1234, 56, 1, 28, "Input"],
-Cell[48837, 1237, 172, 2, 52, "Output"]
-}, Open  ]],
-Cell[49024, 1242, 302, 7, 39, "Text"],
-Cell[CellGroupData[{
-Cell[49351, 1253, 62, 1, 28, "Input"],
-Cell[49416, 1256, 2179, 54, 282, "Output"]
-}, Open  ]],
-Cell[51610, 1313, 710, 13, 174, "Text"],
-Cell[52323, 1328, 1644, 25, 1412, "Input"],
-Cell[53970, 1355, 195, 5, 39, "Text"],
-Cell[CellGroupData[{
-Cell[54190, 1364, 152, 4, 28, "Input"],
-Cell[54345, 1370, 407, 7, 28, "Output"]
-}, Open  ]],
-Cell[54767, 1380, 907, 20, 107, "Text"],
-Cell[CellGroupData[{
-Cell[55699, 1404, 102, 2, 28, "Input"],
-Cell[55804, 1408, 310, 5, 28, "Output"]
+Cell[51303, 1284, 59, 1, 63, "Input"],
+Cell[51365, 1287, 191, 2, 63, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[56151, 1418, 102, 2, 28, "Input"],
-Cell[56256, 1422, 81, 1, 28, "Output"]
+Cell[51593, 1294, 56, 1, 63, "Input"],
+Cell[51652, 1297, 172, 2, 117, "Output"]
 }, Open  ]],
-Cell[56352, 1426, 197, 5, 39, "Text"],
+Cell[51839, 1302, 302, 7, 87, "Text"],
 Cell[CellGroupData[{
-Cell[56574, 1435, 131, 3, 28, "Input"],
-Cell[56708, 1440, 850, 12, 512, "Output"]
+Cell[52166, 1313, 62, 1, 63, "Input"],
+Cell[52231, 1316, 2179, 54, 634, "Output"]
 }, Open  ]],
-Cell[57573, 1455, 276, 6, 62, "Text"],
+Cell[54425, 1373, 710, 13, 391, "Text"],
+Cell[55138, 1388, 1644, 25, 3177, "Input"],
+Cell[56785, 1415, 195, 5, 87, "Text"],
 Cell[CellGroupData[{
-Cell[57874, 1465, 102, 2, 28, "Input"],
-Cell[57979, 1469, 803, 11, 512, "Output"]
+Cell[57005, 1424, 152, 4, 63, "Input"],
+Cell[57160, 1430, 407, 7, 63, "Output"]
 }, Open  ]],
-Cell[58797, 1483, 238, 5, 62, "Text"],
+Cell[57582, 1440, 907, 20, 240, "Text"],
 Cell[CellGroupData[{
-Cell[59060, 1492, 376, 11, 53, "Input"],
-Cell[59439, 1505, 236, 7, 28, "Output"]
+Cell[58514, 1464, 102, 2, 63, "Input"],
+Cell[58619, 1468, 310, 5, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58966, 1478, 102, 2, 63, "Input"],
+Cell[59071, 1482, 81, 1, 63, "Output"]
+}, Open  ]],
+Cell[59167, 1486, 197, 5, 87, "Text"],
+Cell[CellGroupData[{
+Cell[59389, 1495, 131, 3, 63, "Input"],
+Cell[59523, 1500, 850, 12, 1152, "Output"]
+}, Open  ]],
+Cell[60388, 1515, 276, 6, 139, "Text"],
+Cell[CellGroupData[{
+Cell[60689, 1525, 102, 2, 63, "Input"],
+Cell[60794, 1529, 803, 11, 1152, "Output"]
+}, Open  ]],
+Cell[61612, 1543, 238, 5, 139, "Text"],
+Cell[CellGroupData[{
+Cell[61875, 1552, 376, 11, 118, "Input"],
+Cell[62254, 1565, 236, 7, 63, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
